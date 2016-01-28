@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import markdownFiles from 'ember-cli-press/markdownFiles';
 import postParserService from 'ember-cli-press/utils/post-parser';
-import moment from 'moment';
 
 const postParser = postParserService.create();
 const { Service } = Ember;
