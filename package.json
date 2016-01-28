@@ -36,7 +36,8 @@
     "ember-disable-prototype-extensions": "^1.0.0",
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-export-application-global": "^1.0.4",
-    "ember-try": "~0.0.8"
+    "ember-try": "~0.0.8",
+    "markdown-code-highlighting": "0.0.6"
   },
   "keywords": [
     "ember-addon"

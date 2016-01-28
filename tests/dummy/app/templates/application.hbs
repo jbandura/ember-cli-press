@@ -1,3 +1,7 @@
 <h2 id="title">Welcome to Ember</h2>
 
+{{#each postFeed.feed as |post|}}
+  <h3>{{post.title}}</h3>
+  <p>{{format-markdown post.content}}</p>
+{{/each}}
 {{outlet}}

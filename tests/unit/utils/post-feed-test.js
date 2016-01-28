@@ -4,10 +4,10 @@ import Ember from 'ember';
 
 module('Unit | Utility | post-feed');
 
-let mdFilesStub = [
-  {"2015-04-22-test-post": 'File1'},
-  {"2015-06-22-test-post-2": 'File2'}
-];
+let mdFilesStub = {
+  "2015-04-22-test-post": 'File1',
+  "2015-06-22-test-post-2": 'File2'
+};
 let parsedPostStub1 = {
   title: 'Test title',
   date: '2015-04-22',
@@ -34,32 +34,7 @@ let subject = postFeed.create({
   })
 });
 
-test('it gets list of md-files', function(assert) {
-
-  let expectedResult = mdFilesStub;
-  let actualResult = subject._getAllRaw();
-
-  assert.deepEqual(expectedResult, actualResult, 'it returns list of all posts');
-});
-
-// test('it parses single post', function(assert) {
-//   let actualResult = subject._parsePost(parsedPostStub);
-//   let expectedResult = Ember.Object.create({
-//     title: 'Test title',
-//     date: '2015-04-22',
-//     content: '# Hi world'
-//   });
-//
-//   assert.deepEqual(
-//     expectedResult,
-//     actualResult,
-//     'it sets correct attributes on post object'
-//   );
-// });
-
-
 test('it stores a processed array of md-files', function(assert) {
-  subject._parseFeed();
 
   let actualResult = subject.get('feed');
   let expectedResult = Ember.A([
@@ -71,7 +46,6 @@ test('it stores a processed array of md-files', function(assert) {
 });
 
 test('it finds posts by category', function(assert) {
-  subject._parseFeed();
   let actualResult = subject.findBy('category', 'foo');
   let expectedResult = [Ember.Object.create(parsedPostStub1)];
 
@@ -79,7 +53,6 @@ test('it finds posts by category', function(assert) {
 });
 
 test('it finds posts by other keys', function(assert) {
-  subject._parseFeed();
   let actualResult = subject.findBy('title', 'Test title');
   let expectedResult = [Ember.Object.create(parsedPostStub1)];
 
