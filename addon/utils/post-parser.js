@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+const { String: { dasherize }} = Ember;
+
 export default Ember.Object.extend({
 
   /**
@@ -39,10 +41,13 @@ export default Ember.Object.extend({
       dataObject[key.trim()] = this._extractValue(key.trim(), value);
     });
 
-    return dataObject;
+    return this._appendUrlAttribute(dataObject);
   },
 
   /**
+   * Converts front matter in form of string to an array of strings in form of
+   * `key:value` that can be then individually parsed
+   *
    * @param {String} source
    * @returns {String[]} array of key value pairs in form of strings to be
    *                     parsed as yaml
@@ -80,4 +85,18 @@ export default Ember.Object.extend({
     // we have an array
     return string.split(',').map((item) => { return item.trim(); });
   },
+
+  /**
+   * Adds url attribute to the data hash.
+   * It uses the url attribute when provided, otherwise it transforms title
+   * @param {Object} data
+   * @returns {Object}
+   * @private
+   */
+  _appendUrlAttribute(data) {
+    if (data.url || !data.title) { return data; }
+
+    data.url = dasherize(data.title);
+    return data;
+  }
 });

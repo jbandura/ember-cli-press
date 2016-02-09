@@ -18,7 +18,7 @@ module.exports = {
 
   treeForAddon: function (tree) {
     var mdPaths = [],
-        mdFilesPath = '_posts';
+        mdFilesPath = '_markdown';
 
     if (this.project.name() !== 'ember-cli-press') {
       var appMdRoot = path.join(this.project.root, 'app', mdFilesPath);
@@ -44,7 +44,7 @@ module.exports = {
 
       tree = mergeTrees([tree, mdFlattened]);
     }
-    
+
     return this._super.treeForAddon.call(this, tree);
   }
 };
